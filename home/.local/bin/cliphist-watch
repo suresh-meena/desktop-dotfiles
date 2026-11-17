@@ -1,0 +1,5 @@
+#!/bin/sh
+# Records clipboard history once cliphist is installed; does nothing otherwise.
+command -v cliphist >/dev/null || exit 0
+wl-paste --type text  --watch cliphist store &
+exec wl-paste --type image --watch cliphist store

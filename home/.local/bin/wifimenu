@@ -1,0 +1,41 @@
+#!/bin/bash
+# Wi-Fi picker (fuzzel + NetworkManager).
+pkill -x fuzzel && exit 0
+menu() { fuzzel --dmenu --width 40 --lines "${2:-12}" --prompt "${1}  " "${@:3}"; }
+
+radio=$(nmcli -t -f WIFI radio)
+if [ "$radio" = disabled ]; then
+  choice=$(printf '%s\n' "󰖩  Turn Wi-Fi on" | menu "󰖪" 1) || exit 0
+  nmcli radio wifi on; notify-send -i network-wireless "Wi-Fi" "Turned on"; exit 0
+fi
+
+notify-send -t 1500 -i network-wireless "Wi-Fi" "Scanning…" &
+list=$(nmcli -t -f IN-USE,SIGNAL,SECURITY,SSID dev wifi list --rescan auto \
+  | awk -F: '$4!="" && !seen[$4]++ {
+      bars = ($2>=75)?"󰤨":($2>=50)?"󰤥":($2>=25)?"󰤢":"󰤟";
+      lock = ($3=="" || $3=="--") ? "  " : "󰌾 ";
+      cur  = ($1=="*") ? " (connected)" : "";
+      printf "%s %s %s%s\n", bars, lock, $4, cur }')
+
+n=$(( $(grep -c . <<<"$list") + 2 )); [ "$n" -gt 14 ] && n=14
+choice=$(printf '%s\n%s\n%s\n' "$list" "󰖪  Turn Wi-Fi off" "󰑓  Rescan" \
+  | menu "󰖩" "$n" --placeholder "Network") || exit 0
+
+case "$choice" in
+  *"Turn Wi-Fi off") nmcli radio wifi off; notify-send -i network-wireless-offline "Wi-Fi" "Turned off"; exit 0 ;;
+  *Rescan) exec "$0" ;;
+esac
+
+ssid=$(sed -E 's/^[^ ]+ [^ ]* +//; s/ \(connected\)$//' <<<"$choice")
+[ -z "$ssid" ] && exit 0
+
+if nmcli -t -f NAME con show | grep -Fxq "$ssid"; then
+  out=$(nmcli con up id "$ssid" 2>&1)
+elif grep -q '󰌾' <<<"$choice"; then
+  pass=$(fuzzel --dmenu --password --lines 0 --width 40 --prompt "󰌾  " --placeholder "Password for $ssid") || exit 0
+  out=$(nmcli dev wifi connect "$ssid" password "$pass" 2>&1)
+else
+  out=$(nmcli dev wifi connect "$ssid" 2>&1)
+fi
+if [ $? -eq 0 ]; then notify-send -i network-wireless "Wi-Fi" "Connected to $ssid"
+else notify-send -u critical -i network-wireless-offline "Wi-Fi" "Could not connect to $ssid\n${out##*Error: }"; fi

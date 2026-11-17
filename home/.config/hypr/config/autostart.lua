@@ -1,0 +1,13 @@
+-- Auto-start config (UWSM session)
+
+hl.on("hyprland.start", function ()
+    hl.exec_cmd("dbus-update-activation-environment --systemd --all")
+    hl.exec_cmd("/home/suresh/.local/bin/polkit-agent")
+    hl.exec_cmd("swaybg -m fill -i /home/suresh/Pictures/Wallpapers/sunset-gruvbox.jpg")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("dunst")
+    hl.exec_cmd("/home/suresh/.local/bin/cliphist-watch")
+    hl.exec_cmd("udiskie --smart-tray --automount --notify")
+    hl.exec_cmd("/home/suresh/.local/bin/power-profile-sync")
+end)

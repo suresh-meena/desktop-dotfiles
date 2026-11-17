@@ -1,0 +1,4 @@
+#!/bin/sh
+# Password prompt for admin actions: polkit-gnome (GTK, ~22 MB vs ~98 MB for hyprpolkitagent).
+systemctl --user stop hyprpolkitagent 2>/dev/null
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

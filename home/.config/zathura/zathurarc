@@ -1,0 +1,96 @@
+# zathura — Gruvbox dark (muted), matching Waybar / kitty / dunst / wofi
+# Toggle dark page recolouring with Ctrl+R.
+
+# ---------- behaviour ----------
+set selection-clipboard        clipboard      # selected text goes to the normal clipboard
+set adjust-open                "width"        # open documents fit to width
+set first-page-column          "1:1"          # dual-page view starts on page 1 (no blank cover)
+set pages-per-row              1
+set scroll-page-aware          true
+set scroll-full-overlap        0.01
+set scroll-step                60
+set zoom-min                   10
+set zoom-step                  10
+set incremental-search         true
+set search-hadjust             true
+set window-title-basename      true
+set window-title-page          true
+set statusbar-basename         true
+set statusbar-home-tilde       true
+set render-loading             true
+set database                   "sqlite"       # remembers page, zoom and bookmarks per file
+set guioptions                 "s"            # statusbar only; toggle with b
+set font                       "JetBrainsMono Nerd Font 10"
+set dbus-service               true
+
+# SyncTeX (Ctrl+click in the PDF jumps to the source line in your editor)
+set synctex                    true
+set synctex-editor-command     "zed %{input}:%{line}"
+
+# ---------- Gruvbox muted colours ----------
+set default-bg                 "#282828"
+set default-fg                 "#d5c4a1"
+
+set statusbar-bg               "#32302f"
+set statusbar-fg               "#a89984"
+
+set inputbar-bg                "#282828"
+set inputbar-fg                "#d5c4a1"
+
+set notification-bg            "#32302f"
+set notification-fg            "#d5c4a1"
+set notification-error-bg      "#32302f"
+set notification-error-fg      "#cc241d"
+set notification-warning-bg    "#32302f"
+set notification-warning-fg    "#d79921"
+
+set completion-bg              "#32302f"
+set completion-fg              "#a89984"
+set completion-group-bg        "#282828"
+set completion-group-fg        "#7c6f64"
+set completion-highlight-bg    "#458588"
+set completion-highlight-fg    "#1d2021"
+
+set index-bg                   "#282828"
+set index-fg                   "#d5c4a1"
+set index-active-bg            "#3c3836"
+set index-active-fg            "#d79921"
+
+set highlight-color            "rgba(215,153,33,0.35)"   # search hits: muted yellow
+set highlight-active-color     "rgba(214,93,14,0.50)"    # current hit: muted orange
+set highlight-fg               "#1d2021"
+
+set render-loading-bg          "#282828"
+set render-loading-fg          "#7c6f64"
+
+# dark mode: pages drawn in the theme colours, images keep their hue
+set recolor                    true
+set recolor-keephue            true
+set recolor-reverse-video      true
+set recolor-lightcolor         "#282828"
+set recolor-darkcolor          "#d5c4a1"
+
+# ---------- keys (vim defaults kept; these are additions) ----------
+map <C-r>  recolor                         # dark / light pages
+map i      recolor
+map b      toggle_statusbar
+map D      toggle_page_mode                # single / dual page
+map f      toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+map p      toggle_presentation
+map r      rotate rotate-cw
+map R      reload
+map <C-=>  zoom in
+map <C-+>  zoom in
+map <C-->  zoom out
+map <C-0>  adjust_window best-fit
+map w      adjust_window width
+map a      adjust_window best-fit
+map J      navigate next
+map K      navigate previous
+map <Space>   scroll full-down
+map <S-Space> scroll full-up
+map <C-d>  scroll half-down
+map <C-u>  scroll half-up
+map <Tab>  toggle_index                    # table of contents
+map c      copy_link                       # copy link under cursor

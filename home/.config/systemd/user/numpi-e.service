@@ -1,0 +1,11 @@
+[Unit]
+Description=Automatic Raspberry Pi E share (network-failure-safe)
+After=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/numpi-sshfs-mount /mnt/E %t/numpi/E
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

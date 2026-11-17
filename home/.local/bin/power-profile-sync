@@ -1,0 +1,8 @@
+#!/bin/sh
+# Performance on AC, balanced on battery. Run at login; the udev rule
+# /etc/udev/rules.d/61-power-profile.rules handles plug/unplug afterwards.
+if [ "$(cat /sys/class/power_supply/ADP1/online 2>/dev/null)" = 1 ]; then
+  powerprofilesctl set performance
+else
+  powerprofilesctl set balanced
+fi

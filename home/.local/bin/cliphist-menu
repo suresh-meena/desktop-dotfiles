@@ -1,0 +1,5 @@
+#!/bin/sh
+# Clipboard history picker (needs cliphist).
+command -v cliphist >/dev/null || { notify-send "Clipboard" "cliphist is not installed"; exit 1; }
+pkill -x fuzzel && exit 0
+cliphist list | fuzzel --dmenu --prompt "󰅌  " --placeholder "Clipboard" --width 60 | cliphist decode | wl-copy

@@ -1,0 +1,4 @@
+#!/bin/sh
+# App launcher: fuzzel if installed, wofi as fallback.
+pkill -x fuzzel && exit 0          # pressing the key again closes it
+if command -v fuzzel >/dev/null; then exec fuzzel; else exec wofi --show drun; fi

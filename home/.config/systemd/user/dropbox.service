@@ -1,0 +1,12 @@
+[Unit]
+Description=Dropbox
+After=graphical-session.target network-online.target
+
+[Service]
+ExecStart=%h/.dropbox-dist/dropboxd
+Restart=on-failure
+RestartSec=10
+Nice=10
+
+[Install]
+WantedBy=default.target

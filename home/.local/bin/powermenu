@@ -1,0 +1,11 @@
+#!/bin/sh
+# Session menu (fuzzel dmenu mode).
+pkill -x fuzzel && exit 0
+choice=$(printf '%s\n' "󰍃  Log out" "󰤄  Suspend" "󰜉  Reboot" "󰐥  Shut down" \
+  | fuzzel --dmenu --prompt "  " --lines 4 --width 20 --placeholder "Session") || exit 0
+case "$choice" in
+  *"Log out")   uwsm stop ;;
+  *Suspend)     systemctl suspend ;;
+  *Reboot)      systemctl reboot ;;
+  *"Shut down") systemctl poweroff ;;
+esac

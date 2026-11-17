@@ -1,0 +1,132 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "exclusive": true,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "clock#time",
+    "clock#date",
+    "cpu",
+    "power-profiles-daemon",
+    "memory",
+    "backlight"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "temperature",
+    "battery",
+    "network",
+    "wireplumber",
+    "tray",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip": false,
+    "on-click": "/home/suresh/.local/bin/launcher"
+  },
+  "clock#time": {
+    "format": "  {:%H:%M}",
+    "interval": 10,
+    "tooltip": false
+  },
+  "clock#date": {
+    "format": "  {:%a %e/%m}",
+    "interval": 60,
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "  {usage}%",
+    "on-click": "kitty -e btop",
+    "tooltip": false
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "format-icons": {
+      "performance": "󰓅",
+      "balanced": "󰾅",
+      "power-saver": "󰾆",
+      "default": "󰾅"
+    }
+  },
+  "memory": {
+    "interval": 15,
+    "format": "󰍛  {percentage}%",
+    "tooltip-format": "{used:0.1f} / {total:0.1f} GiB"
+  },
+  "backlight": {
+    "format": "󰃠  {percent}%",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "persistent-workspaces": {
+      "*": 4
+    },
+    "sort-by-number": true,
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1"
+  },
+  "temperature": {
+    "thermal-zone": 7,
+    "critical-threshold": 85,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "tooltip": false
+  },
+  "battery": {
+    "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-icons": [
+      "󰁺",
+      "󰁼",
+      "󰁿",
+      "󰂁",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo}",
+    "states": {
+      "warning": 25,
+      "critical": 10
+    }
+  },
+  "network": {
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "on-click": "/home/suresh/.local/bin/wifimenu",
+    "on-click-right": "kitty -e nmtui"
+  },
+  "wireplumber": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  {volume}%",
+    "format-icons": [
+      "󰕿",
+      "󰖀",
+      "󰕾"
+    ],
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": false,
+    "on-click": "/home/suresh/.local/bin/powermenu"
+  },
+  "height": 30
+}
