@@ -40,6 +40,8 @@ tooltip label { color: @fg; }
 #clock.time      { color: @fg; }
 #clock.date      { color: @fg4; }
 #network         { color: @fg4; }
+#idle_inhibitor  { color: @gray; font-size: 14px; padding: 0 11px; }
+#idle_inhibitor.activated { color: @yellow; }
 #network.disconnected { color: @gray; }
 #wireplumber     { color: @fg; }
 #wireplumber.muted { color: @red; }

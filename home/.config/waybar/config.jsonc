@@ -17,6 +17,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
+    "idle_inhibitor",
     "temperature",
     "battery",
     "network",
@@ -71,6 +72,15 @@
     "sort-by-number": true,
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰛊"
+    },
+    "tooltip-format-activated": "Caffeine on: screen stays awake",
+    "tooltip-format-deactivated": "Caffeine off: normal dim, lock and sleep"
   },
   "temperature": {
     "thermal-zone": 7,
