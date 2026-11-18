@@ -11,7 +11,17 @@
 
 -- Session environment (lightdm starts plain Hyprland, so ~/.config/uwsm/env is not read)
 -- Intel iGPU renders the desktop; NVIDIA MX250 stays asleep
-hl.env("AQ_DRM_DEVICES", "/dev/dri/card1")
+-- Run Hyprland on the Intel GPU. Look its card up by PCI address, because the
+-- card number changes depending on whether the NVIDIA driver is loaded
+-- (see `gpu-mode`). If the lookup fails, leave it unset and let Hyprland pick.
+do
+    local p = io.popen("readlink -e /dev/dri/by-path/pci-0000:00:02.0-card 2>/dev/null")
+    local card = p and p:read("*l")
+    if p then p:close() end
+    if card and card ~= "" then
+        hl.env("AQ_DRM_DEVICES", card)
+    end
+end
 hl.env("LIBVA_DRIVER_NAME", "iHD")
 hl.env("MOZ_DRM_DEVICE", "/dev/dri/renderD128")
 -- Toolkits

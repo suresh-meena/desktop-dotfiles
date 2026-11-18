@@ -1,0 +1,80 @@
+#!/bin/sh
+# gpu-mode: switch the NVIDIA MX250 off (integrated) or on (hybrid).
+#
+#   sudo gpu-mode integrated   NVIDIA driver not loaded, card removed and powered off
+#   sudo gpu-mode hybrid       back to normal: Intel drives the desktop, `prime-run app` uses NVIDIA
+#   gpu-mode status            show the current mode
+#
+# Changes apply after a reboot. Nothing is uninstalled.
+# If the desktop ever fails to start: Ctrl+Alt+F3, log in, `sudo gpu-mode hybrid`, `reboot`.
+set -eu
+
+MODPROBE=/etc/modprobe.d/gpu-mode-integrated.conf
+UDEV=/etc/udev/rules.d/00-gpu-mode-integrated.rules
+SLEEP_UNITS="nvidia-suspend.service nvidia-resume.service nvidia-hibernate.service"
+
+status() {
+    if [ -e "$MODPROBE" ] || [ -e "$UDEV" ]; then
+        echo "configured mode : integrated (NVIDIA off)"
+    else
+        echo "configured mode : hybrid (NVIDIA available)"
+    fi
+    if [ -d /sys/module/nvidia ]; then
+        echo "nvidia driver   : loaded"
+    else
+        echo "nvidia driver   : not loaded"
+    fi
+    if lspci -d 10de: 2>/dev/null | grep -q .; then
+        echo "nvidia device   : present"
+    else
+        echo "nvidia device   : removed (powered off)"
+    fi
+    port=/sys/bus/pci/devices/0000:00:1c.4/power/runtime_status
+    [ -r "$port" ] && echo "its PCIe port   : $(cat "$port")"
+    return 0
+}
+
+need_root() {
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "Run with sudo: sudo gpu-mode $1" >&2
+        exit 1
+    fi
+}
+
+case "${1:-status}" in
+integrated)
+    need_root integrated
+    cat > "$MODPROBE" <<'EOF'
+# Written by gpu-mode (integrated). Remove with: sudo gpu-mode hybrid
+blacklist nouveau
+blacklist nvidia
+blacklist nvidia_drm
+blacklist nvidia_modeset
+blacklist nvidia_uvm
+install nvidia /bin/false
+install nvidia_drm /bin/false
+install nvidia_modeset /bin/false
+install nvidia_uvm /bin/false
+EOF
+    cat > "$UDEV" <<'EOF'
+# Written by gpu-mode (integrated). Remove with: sudo gpu-mode hybrid
+# Drop every NVIDIA PCI function so its PCIe port can power the card off.
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{power/control}="auto", ATTR{remove}="1"
+EOF
+    systemctl disable $SLEEP_UNITS >/dev/null 2>&1 || true
+    echo "Integrated mode set. Reboot to turn the NVIDIA card off."
+    ;;
+hybrid)
+    need_root hybrid
+    rm -f "$MODPROBE" "$UDEV"
+    systemctl enable $SLEEP_UNITS >/dev/null 2>&1 || true
+    echo "Hybrid mode set. Reboot to bring the NVIDIA card back."
+    ;;
+status)
+    status
+    ;;
+*)
+    echo "usage: gpu-mode [integrated|hybrid|status]" >&2
+    exit 2
+    ;;
+esac

@@ -29,5 +29,6 @@ Done. Still to do by hand:
   sudo pacman -S --needed - < $REPO/packages.txt
   sudo cp $REPO/system/etc/udev/rules.d/61-power-profile.rules /etc/udev/rules.d/
   sudo udevadm control --reload
+  sudo install -m 755 $REPO/system/usr/local/bin/gpu-mode /usr/local/bin/gpu-mode
 Then log out and back in.
 MSG

@@ -27,8 +27,10 @@ cp -p "$HOME/.local/share/applications/xfce4-about.desktop" "$H/.local/share/app
 cp -p "$HOME/Pictures/Wallpapers/sunset-gruvbox.jpg" "$H/Pictures/Wallpapers/"
 
 # System files
-mkdir -p "$REPO/system/etc/udev/rules.d"
-cp -p /etc/udev/rules.d/61-power-profile.rules "$REPO/system/etc/udev/rules.d/"
+# (copied only if present; the repo keeps its copy otherwise)
+mkdir -p "$REPO/system/etc/udev/rules.d" "$REPO/system/usr/local/bin"
+[ -e /etc/udev/rules.d/61-power-profile.rules ] && cp -p /etc/udev/rules.d/61-power-profile.rules "$REPO/system/etc/udev/rules.d/"
+[ -e /usr/local/bin/gpu-mode ] && cp -p /usr/local/bin/gpu-mode "$REPO/system/usr/local/bin/"
 
 # Package lists
 pacman -Qqen > "$REPO/packages.txt"
