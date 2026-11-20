@@ -17,6 +17,7 @@ mkdir -p "$H/.config/fish" "$H/.config/systemd/user" "$H/.local/bin" \
          "$H/.local/share/applications" "$H/Pictures/Wallpapers"
 cp -p "$HOME/.config/mimeapps.list" "$H/.config/"
 cp -p "$HOME/.config/fish/config.fish" "$H/.config/fish/"
+cp -p "$HOME/.condarc" "$H/" 2>/dev/null || true   # conda: base not auto-activated
 for u in dropbox numpi-d numpi-e; do
   cp -p "$HOME/.config/systemd/user/$u.service" "$H/.config/systemd/user/"
 done
