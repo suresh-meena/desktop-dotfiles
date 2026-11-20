@@ -1,0 +1,7 @@
+# greetd: minimal login manager, text greeter on VT1.
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --time --time-format '%a %d %b   %H:%M' --remember --remember-session --asterisks --sessions /usr/share/wayland-sessions --cmd start-hyprland --env XDG_SESSION_TYPE=wayland --width 60 --power-shutdown 'systemctl poweroff' --power-reboot 'systemctl reboot' --theme 'border=darkgray;text=gray;prompt=yellow;time=gray;action=darkgray;button=yellow;container=black;input=white;greet=gray'"
+user = "greeter"

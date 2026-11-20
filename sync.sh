@@ -31,6 +31,10 @@ cp -p "$HOME/Pictures/Wallpapers/sunset-gruvbox.jpg" "$H/Pictures/Wallpapers/"
 mkdir -p "$REPO/system/etc/udev/rules.d" "$REPO/system/usr/local/bin"
 [ -e /etc/udev/rules.d/61-power-profile.rules ] && cp -p /etc/udev/rules.d/61-power-profile.rules "$REPO/system/etc/udev/rules.d/"
 [ -e /usr/local/bin/gpu-mode ] && cp -p /usr/local/bin/gpu-mode "$REPO/system/usr/local/bin/"
+# greetd login screen: only once ours is installed (not the package default)
+mkdir -p "$REPO/system/etc/greetd" "$REPO/system/etc/pam.d"
+grep -q tuigreet /etc/greetd/config.toml 2>/dev/null && cp -p /etc/greetd/config.toml "$REPO/system/etc/greetd/"
+grep -q gnome_keyring /etc/pam.d/greetd 2>/dev/null && cp -p /etc/pam.d/greetd "$REPO/system/etc/pam.d/"
 
 # Package lists
 pacman -Qqen > "$REPO/packages.txt"

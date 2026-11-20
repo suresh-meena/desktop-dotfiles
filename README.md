@@ -26,6 +26,7 @@ machine dotfiles out, so they live here instead.
 | `home/.local/bin/` | launcher, filesearch (Super+Shift+Space), calendar-popup, powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
 | `home/Pictures/Wallpapers/` | Dimmed Gruvbox wallpaper |
 | `system/etc/udev/rules.d/` | Performance profile on AC, balanced on battery |
+| `system/etc/greetd/`, `system/etc/pam.d/greetd` | Login screen: greetd + tuigreet (replaces LightDM), keyring unlocked at login |
 | `system/usr/local/bin/gpu-mode` | `sudo gpu-mode integrated` / `hybrid` turns the NVIDIA MX250 off/on (reboot to apply); `gpu-mode status` |
 | `packages.txt` | Explicitly installed repo packages (`pacman -Qqen`) |
 

@@ -1,0 +1,19 @@
+/* Calendar popup (gsimplecal, from the bar's date): muted Gruvbox, square */
+calendar {
+  background-color: #282828;
+  color: #a89984;
+  border: 1px solid #504945;
+  border-radius: 0;
+  padding: 4px;
+}
+calendar.header { border: none; border-radius: 0; color: #d5c4a1; }
+calendar.button { color: #d5c4a1; }
+calendar.button:hover { color: #d79921; }
+calendar.highlight { color: #d65d0e; font-weight: bold; }  /* weekday names */
+calendar:indeterminate { color: #504945; }                 /* days of other months */
+calendar:selected {
+  background-color: #d79921;
+  color: #1d2021;
+  border-radius: 0;
+  font-weight: bold;
+}

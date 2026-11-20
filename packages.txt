@@ -67,7 +67,10 @@ github-cli
 gnome-calculator
 gnome-keyring
 gnome-text-editor
+greetd
+greetd-tuigreet
 grim
+gsimplecal
 gst-libav
 gst-plugin-pipewire
 gst-plugin-va
