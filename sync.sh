@@ -34,8 +34,9 @@ mkdir -p "$REPO/system/etc/udev/rules.d" "$REPO/system/usr/local/bin"
 [ -e /usr/local/bin/gpu-mode ] && cp -p /usr/local/bin/gpu-mode "$REPO/system/usr/local/bin/"
 # greetd login screen: only once ours is installed (not the package default)
 mkdir -p "$REPO/system/etc/greetd" "$REPO/system/etc/pam.d"
-grep -q tuigreet /etc/greetd/config.toml 2>/dev/null && cp -p /etc/greetd/config.toml "$REPO/system/etc/greetd/"
+grep -q initial_session /etc/greetd/config.toml 2>/dev/null && cp -p /etc/greetd/config.toml "$REPO/system/etc/greetd/"
 grep -q gnome_keyring /etc/pam.d/greetd 2>/dev/null && cp -p /etc/pam.d/greetd "$REPO/system/etc/pam.d/"
+grep -q gnome_keyring /etc/pam.d/hyprlock 2>/dev/null && cp -p /etc/pam.d/hyprlock "$REPO/system/etc/pam.d/"
 
 # Package lists
 pacman -Qqen > "$REPO/packages.txt"
