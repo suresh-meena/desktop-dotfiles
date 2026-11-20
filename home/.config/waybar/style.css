@@ -27,7 +27,7 @@
 
 window#waybar { background: rgba(40, 40, 40, 0.80); color: @fg; }
 
-tooltip { background: @bg; border: 1px solid @seg; border-radius: 6px; }
+tooltip { background: @bg; border: 1px solid @seg; border-radius: 0; }
 tooltip label { color: @fg; }
 
 #custom-launcher, #clock, #cpu, #memory, #backlight, #temperature,
