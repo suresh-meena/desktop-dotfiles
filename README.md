@@ -23,7 +23,7 @@ machine dotfiles out, so they live here instead.
 | `home/.config/{gtk-3.0,gtk-4.0,qt6ct}/`, `mimeapps.list` | Toolkit settings, default apps |
 | `home/.config/fish/config.fish` | Shell; Pure prompt options are set by `install.sh` |
 | `home/.config/systemd/user/` | Dropbox and numpi sshfs mounts |
-| `home/.local/bin/` | launcher, powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
+| `home/.local/bin/` | launcher, filesearch (Super+Shift+Space), calendar-popup, powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
 | `home/Pictures/Wallpapers/` | Dimmed Gruvbox wallpaper |
 | `system/etc/udev/rules.d/` | Performance profile on AC, balanced on battery |
 | `system/usr/local/bin/gpu-mode` | `sudo gpu-mode integrated` / `hybrid` turns the NVIDIA MX250 off/on (reboot to apply); `gpu-mode status` |

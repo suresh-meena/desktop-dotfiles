@@ -28,7 +28,8 @@
   "custom/launcher": {
     "format": "󰣇",
     "tooltip": false,
-    "on-click": "/home/suresh/.local/bin/launcher"
+    "on-click": "/home/suresh/.local/bin/launcher",
+    "on-click-right": "/home/suresh/.local/bin/filesearch"
   },
   "clock#time": {
     "format": "  {:%H:%M}",
@@ -38,7 +39,24 @@
   "clock#date": {
     "format": "  {:%a %e/%m}",
     "interval": 60,
-    "tooltip": false
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#d5c4a1'><b>{}</b></span>",
+        "weekdays": "<span color='#d65d0e'><b>{}</b></span>",
+        "days": "<span color='#a89984'>{}</span>",
+        "today": "<span color='#1d2021' background='#d79921'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_down",
+      "on-scroll-down": "shift_up"
+    },
+    "on-click": "/home/suresh/.local/bin/calendar-popup"
   },
   "cpu": {
     "interval": 5,

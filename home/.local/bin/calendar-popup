@@ -1,0 +1,4 @@
+#!/bin/sh
+# Toggle a small calendar window (gsimplecal closes itself when run again).
+command -v gsimplecal >/dev/null || { notify-send "Calendar" "Install it: sudo pacman -S gsimplecal"; exit 0; }
+exec gsimplecal

@@ -125,3 +125,6 @@ hl.layer_rule({
   blur = true,
   blur_popups = true,
 })
+
+-- Calendar popup from the bar's date: float just under it
+hl.window_rule({ match = { class = "^(gsimplecal)$" }, float = true, pin = true, move = { "100", "34" } })

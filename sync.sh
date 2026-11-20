@@ -7,7 +7,7 @@ H=$REPO/home
 mkdir -p "$H"
 
 # Whole config directories
-for d in hypr waybar dunst fuzzel kitty zathura mpv btop gtk-3.0 gtk-4.0 qt6ct; do
+for d in hypr waybar dunst fuzzel kitty zathura mpv btop gtk-3.0 gtk-4.0 qt6ct gsimplecal; do
   mkdir -p "$H/.config/$d"
   rsync -a --delete "$HOME/.config/$d/" "$H/.config/$d/"
 done
@@ -20,7 +20,7 @@ cp -p "$HOME/.config/fish/config.fish" "$H/.config/fish/"
 for u in dropbox numpi-d numpi-e; do
   cp -p "$HOME/.config/systemd/user/$u.service" "$H/.config/systemd/user/"
 done
-for s in launcher powermenu wifimenu cliphist-menu cliphist-watch polkit-agent power-profile-sync; do
+for s in launcher filesearch calendar-popup powermenu wifimenu cliphist-menu cliphist-watch polkit-agent power-profile-sync; do
   cp -p "$HOME/.local/bin/$s" "$H/.local/bin/"
 done
 cp -p "$HOME/.local/share/applications/xfce4-about.desktop" "$H/.local/share/applications/"

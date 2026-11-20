@@ -1,0 +1,11 @@
+#!/bin/sh
+# Find a file or folder under ~ and open it with its default app
+# (folders open in Thunar). Press the key again to close.
+pkill -x fuzzel && exit 0
+cd "$HOME" || exit 1
+sel=$(fd --type f --type d \
+        --exclude miniforge3 --exclude miniconda3 \
+        --exclude site-packages --exclude node_modules --exclude __pycache__ . \
+      | fuzzel --dmenu --width 70 --lines 12 \
+               --prompt "󰈔  " --placeholder "Search files and folders") || exit 0
+[ -n "$sel" ] && exec xdg-open "$HOME/$sel"
