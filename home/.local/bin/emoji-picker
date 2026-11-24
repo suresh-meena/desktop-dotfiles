@@ -1,0 +1,10 @@
+#!/bin/sh
+# Pick an emoji or symbol; it is typed into the focused window (with wtype)
+# and also copied to the clipboard.
+pkill -x fuzzel && exit 0
+sel=$(fuzzel --dmenu --width 50 --lines 12 --prompt "󰞅  " --placeholder "Emoji and symbols" \
+      < "$HOME/.local/share/emoji/list.txt") || exit 0
+ch=${sel%%  *}
+[ -n "$ch" ] || exit 0
+printf '%s' "$ch" | wl-copy
+command -v wtype >/dev/null && wtype "$ch"

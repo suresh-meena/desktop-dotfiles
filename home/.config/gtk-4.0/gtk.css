@@ -1,0 +1,64 @@
+/* App colours: muted Gruvbox (libadwaita 1.6+ variables, plus the older named colours) */
+:root {
+  --window-bg-color: #282828;
+  --window-fg-color: #d5c4a1;
+  --view-bg-color: #1d2021;
+  --view-fg-color: #d5c4a1;
+  --headerbar-bg-color: #32302f;
+  --headerbar-fg-color: #d5c4a1;
+  --headerbar-border-color: #3c3836;
+  --headerbar-backdrop-color: #282828;
+  --sidebar-bg-color: #32302f;
+  --sidebar-fg-color: #d5c4a1;
+  --sidebar-backdrop-color: #282828;
+  --card-bg-color: #32302f;
+  --card-fg-color: #d5c4a1;
+  --popover-bg-color: #32302f;
+  --popover-fg-color: #d5c4a1;
+  --dialog-bg-color: #32302f;
+  --dialog-fg-color: #d5c4a1;
+  --accent-bg-color: #458588;
+  --accent-fg-color: #1d2021;
+  --accent-color: #83a598;
+  --destructive-bg-color: #cc241d;
+  --destructive-fg-color: #ebdbb2;
+  --destructive-color: #fb4934;
+  --success-bg-color: #98971a;
+  --success-color: #b8bb26;
+  --warning-bg-color: #d79921;
+  --warning-color: #fabd2f;
+  --error-bg-color: #cc241d;
+  --error-color: #fb4934;
+}
+@define-color window_bg_color #282828;
+@define-color window_fg_color #d5c4a1;
+@define-color view_bg_color #1d2021;
+@define-color view_fg_color #d5c4a1;
+@define-color headerbar_bg_color #32302f;
+@define-color headerbar_fg_color #d5c4a1;
+@define-color headerbar_border_color #3c3836;
+@define-color headerbar_backdrop_color #282828;
+@define-color sidebar_bg_color #32302f;
+@define-color sidebar_fg_color #d5c4a1;
+@define-color sidebar_backdrop_color #282828;
+@define-color card_bg_color #32302f;
+@define-color card_fg_color #d5c4a1;
+@define-color popover_bg_color #32302f;
+@define-color popover_fg_color #d5c4a1;
+@define-color dialog_bg_color #32302f;
+@define-color dialog_fg_color #d5c4a1;
+@define-color accent_bg_color #458588;
+@define-color accent_fg_color #1d2021;
+@define-color accent_color #83a598;
+@define-color destructive_bg_color #cc241d;
+@define-color destructive_fg_color #ebdbb2;
+@define-color destructive_color #fb4934;
+@define-color success_bg_color #98971a;
+@define-color success_color #b8bb26;
+@define-color warning_bg_color #d79921;
+@define-color warning_color #fabd2f;
+@define-color error_bg_color #cc241d;
+@define-color error_color #fb4934;
+
+/* Rectangles everywhere */
+* { border-radius: 0; }

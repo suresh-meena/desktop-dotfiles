@@ -18,10 +18,11 @@ mkdir -p "$H/.config/fish" "$H/.config/systemd/user" "$H/.local/bin" \
 cp -p "$HOME/.config/mimeapps.list" "$H/.config/"
 cp -p "$HOME/.config/fish/config.fish" "$H/.config/fish/"
 cp -p "$HOME/.condarc" "$H/" 2>/dev/null || true   # conda: base not auto-activated
-for u in dropbox numpi-d numpi-e; do
-  cp -p "$HOME/.config/systemd/user/$u.service" "$H/.config/systemd/user/"
+for u in dropbox.service numpi-d.service numpi-e.service battery-alert.service battery-alert.timer; do
+  cp -p "$HOME/.config/systemd/user/$u" "$H/.config/systemd/user/"
 done
-for s in launcher filesearch calendar-popup powermenu wifimenu cliphist-menu cliphist-watch polkit-agent power-profile-sync; do
+mkdir -p "$H/.local/share/emoji"; cp -p "$HOME/.local/share/emoji/list.txt" "$H/.local/share/emoji/"
+for s in launcher filesearch calendar-popup osd screenshot battery-alert emoji-picker powermenu wifimenu cliphist-menu cliphist-watch polkit-agent power-profile-sync; do
   cp -p "$HOME/.local/bin/$s" "$H/.local/bin/"
 done
 cp -p "$HOME/.local/share/applications/xfce4-about.desktop" "$H/.local/share/applications/"

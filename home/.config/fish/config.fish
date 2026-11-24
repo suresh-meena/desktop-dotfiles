@@ -19,3 +19,7 @@ else
 end
 # <<< conda initialize <<<
 
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/suresh/.local/bin" $PATH

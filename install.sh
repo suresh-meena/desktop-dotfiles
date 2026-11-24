@@ -19,6 +19,7 @@ gsettings set io.github.celluloid-player.Celluloid mpv-config-enable true || tru
 echo "User services"
 systemctl --user daemon-reload
 systemctl --user enable dropbox.service || true
+systemctl --user enable battery-alert.timer || true
 # numpi-d/numpi-e need ~/.local/bin/numpi-sshfs-mount, which is not in this
 # repo (it holds host addresses). Restore it, then:
 #   systemctl --user enable --now numpi-d.service numpi-e.service

@@ -41,6 +41,10 @@ tooltip label { color: @fg; }
 #clock.date      { color: @fg4; }
 #network         { color: @fg4; }
 #idle_inhibitor  { color: @gray; font-size: 14px; padding: 0 11px; }
+#mpris           { color: @fg4; padding: 0 11px; }
+#mpris.paused    { color: @gray; }
+#bluetooth       { color: @fg4; padding: 0 9px; }
+#bluetooth.connected { color: @fg; }
 #idle_inhibitor.activated { color: @yellow; }
 #network.disconnected { color: @gray; }
 #wireplumber     { color: @fg; }

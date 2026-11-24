@@ -10,6 +10,12 @@
     horizontal_padding = 10
     frame_width = 1
     corner_radius = 0
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 200
+    progress_bar_max_width = 340
+    progress_bar_corner_radius = 0
     font = JetBrainsMono Nerd Font 10
     markup = full
     format = "<b>%s</b>\n%b"
@@ -39,3 +45,10 @@
     foreground = "#d5c4a1"
     frame_color = "#cc241d"
     timeout = 0
+
+# Volume / brightness bubble (from ~/.local/bin/osd): not kept in history
+[osd]
+    appname = osd
+    history_ignore = yes
+    highlight = "#d79921"
+    frame_color = "#504945"

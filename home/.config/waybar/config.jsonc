@@ -17,10 +17,12 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
+    "mpris",
     "idle_inhibitor",
     "temperature",
     "battery",
     "network",
+    "bluetooth",
     "wireplumber",
     "tray",
     "custom/power"
@@ -74,6 +76,31 @@
     "sort-by-number": true,
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
+  },
+  "mpris": {
+    "format": "{status_icon}  {dynamic}",
+    "format-paused": "{status_icon}  {dynamic}",
+    "dynamic-order": ["title", "artist"],
+    "dynamic-len": 32,
+    "dynamic-separator": " · ",
+    "status-icons": { "playing": "󰐊", "paused": "󰏤", "stopped": "󰓛" },
+    "tooltip-format": "{player}: {title} — {artist}",
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-scroll-up": "playerctl previous",
+    "on-scroll-down": "playerctl next"
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-off": "",
+    "format-disabled": "",
+    "format-connected": "󰂱  {device_alias}",
+    "format-connected-battery": "󰂱  {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "Bluetooth on, nothing connected",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "blueman-manager",
+    "on-click-right": "rfkill toggle bluetooth"
   },
   "idle_inhibitor": {
     "format": "{icon}",

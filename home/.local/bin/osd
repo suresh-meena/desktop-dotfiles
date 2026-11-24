@@ -1,0 +1,41 @@
+#!/bin/sh
+# Change volume / mic / brightness and show the level as one replaceable
+# dunst bubble with a progress bar.
+#   osd vol-up | vol-down | vol-mute | mic-mute | bright-up | bright-down
+SINK=@DEFAULT_AUDIO_SINK@
+SRC=@DEFAULT_AUDIO_SOURCE@
+
+show() {  # icon text value
+    notify-send -a osd -u low -t 1200 \
+        -h string:x-dunst-stack-tag:osd -h "int:value:$3" "$1  $2"
+}
+
+vol_state() {  # prints "<percent> <muted 0|1>"
+    wpctl get-volume "$1" | awk '{v=int($2*100+0.5); m=($3=="[MUTED]")?1:0; print v, m}'
+}
+
+case "$1" in
+vol-up)    wpctl set-mute "$SINK" 0; wpctl set-volume -l 1 "$SINK" 5%+ ;;
+vol-down)  wpctl set-volume "$SINK" 5%- ;;
+vol-mute)  wpctl set-mute "$SINK" toggle ;;
+mic-mute)  wpctl set-mute "$SRC" toggle ;;
+bright-up)   brightnessctl -q set 5%+ ;;
+bright-down) brightnessctl -q -n1 set 5%- ;;
+*) echo "usage: osd vol-up|vol-down|vol-mute|mic-mute|bright-up|bright-down" >&2; exit 2 ;;
+esac
+
+case "$1" in
+vol-*)
+    set -- $(vol_state "$SINK")
+    if [ "$2" = 1 ] || [ "$1" = 0 ]; then show "󰝟" "Muted" "$1"
+    elif [ "$1" -lt 34 ]; then show "󰕿" "Volume $1%" "$1"
+    elif [ "$1" -lt 67 ]; then show "󰖀" "Volume $1%" "$1"
+    else show "󰕾" "Volume $1%" "$1"; fi ;;
+mic-*)
+    set -- $(vol_state "$SRC")
+    if [ "$2" = 1 ]; then show "󰍭" "Microphone muted" 0
+    else show "󰍬" "Microphone on" "$1"; fi ;;
+bright-*)
+    p=$(brightnessctl -m | cut -d, -f4 | tr -d %)
+    show "󰃠" "Brightness $p%" "$p" ;;
+esac

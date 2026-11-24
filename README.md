@@ -23,7 +23,7 @@ machine dotfiles out, so they live here instead.
 | `home/.config/{gtk-3.0,gtk-4.0,qt6ct}/`, `mimeapps.list` | Toolkit settings, default apps |
 | `home/.config/fish/config.fish` | Shell; Pure prompt options are set by `install.sh` |
 | `home/.config/systemd/user/` | Dropbox and numpi sshfs mounts |
-| `home/.local/bin/` | launcher, filesearch (Super+Shift+Space), calendar-popup, powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
+| `home/.local/bin/` | launcher, filesearch (Super+Shift+Space), emoji-picker (Super+.), osd (volume/brightness bubble), screenshot (Print variants), battery-alert (15%/7% warnings, run by a user timer), calendar-popup, powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
 | `home/Pictures/Wallpapers/` | Dimmed Gruvbox wallpaper |
 | `system/etc/udev/rules.d/` | Performance profile on AC, balanced on battery |
 | `system/etc/greetd/`, `system/etc/pam.d/greetd` | Login: greetd auto-login straight into hyprlock (password on the Gruvbox lock screen; hyprlock also unlocks the keyring); tuigreet after a log-out |

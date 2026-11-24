@@ -1,0 +1,27 @@
+#!/bin/sh
+# screenshot region|screen|window [--edit]
+# Saves to ~/Pictures/Screenshots, copies to the clipboard, notifies.
+# --edit opens it in satty to annotate (if installed).
+mode=${1:-region}; edit=${2:-}
+dir="$HOME/Pictures/Screenshots"; mkdir -p "$dir"
+file="$dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+
+case "$mode" in
+region)
+    geom=$(slurp -d -b 28282866 -c d79921ff -w 1) || exit 0   # Esc cancels
+    grim -g "$geom" "$file" ;;
+window)
+    geom=$(hyprctl activewindow -j | jq -r 'if .at then "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])" else empty end')
+    [ -n "$geom" ] || { notify-send -a screenshot "Screenshot" "No active window"; exit 1; }
+    grim -g "$geom" "$file" ;;
+screen)
+    out=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
+    grim -o "$out" "$file" ;;
+*) echo "usage: screenshot region|screen|window [--edit]" >&2; exit 2 ;;
+esac || exit 1
+
+if [ "$edit" = --edit ] && command -v satty >/dev/null; then
+    exec satty --filename "$file" --output-filename "$file" --copy-command wl-copy --early-exit
+fi
+wl-copy --type image/png < "$file"
+notify-send -a screenshot -i "$file" "Screenshot saved" "Copied to clipboard · ${file#$HOME/}"

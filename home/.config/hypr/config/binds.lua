@@ -81,6 +81,7 @@ hl.bind(mainMod .. " + W",          hl.dsp.exec_cmd(launchPrefix .. BROWSER))
 hl.bind("CONTROL + SHIFT + Escape", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. " -e btop"))
 hl.bind(mainMod .. " + Space",      hl.dsp.exec_cmd("/home/suresh/.local/bin/launcher"))
 hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.exec_cmd("/home/suresh/.local/bin/filesearch"))
+hl.bind(mainMod .. " + period",      hl.dsp.exec_cmd("/home/suresh/.local/bin/emoji-picker"))
 hl.bind(mainMod .. " + ALT + C",    hl.dsp.exec_cmd("/home/suresh/.local/bin/powermenu"))
 hl.bind(mainMod .. " + V",          hl.dsp.exec_cmd("/home/suresh/.local/bin/cliphist-menu"))
 hl.bind(mainMod .. " + L",          hl.dsp.exec_cmd("loginctl lock-session"))
@@ -91,10 +92,10 @@ hl.bind(mainMod .. " + N",          hl.dsp.exec_cmd("/home/suresh/.local/bin/wif
 ---------------------------
 
 -- Audio
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),   { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),    { locked = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("/home/suresh/.local/bin/osd vol-up"),   { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("/home/suresh/.local/bin/osd vol-down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("/home/suresh/.local/bin/osd vol-mute"), { locked = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("/home/suresh/.local/bin/osd mic-mute"),    { locked = true })
 
 -- Media
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"),   { locked = true })
@@ -103,8 +104,8 @@ hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),     { locked = true
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Brightness
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set 5%+"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("/home/suresh/.local/bin/osd bright-up"),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("/home/suresh/.local/bin/osd bright-down"), { locked = true, repeating = true })
 
 -------------------
 ---- UTILITIES ----
@@ -112,8 +113,11 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { loc
 
 -- Screen Capture
 hl.bind(mainMod .. " + P",     hl.dsp.exec_cmd("hyprpicker -a -n"))
-hl.bind("Print",               hl.dsp.exec_cmd("sh -c 'grim -g \"$(slurp)\" - | wl-copy'"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("sh -c 'grim - | wl-copy'"))
+-- Screenshots: saved to ~/Pictures/Screenshots and copied (see ~/.local/bin/screenshot)
+hl.bind("Print",                       hl.dsp.exec_cmd("/home/suresh/.local/bin/screenshot region"))
+hl.bind(mainMod .. " + Print",         hl.dsp.exec_cmd("/home/suresh/.local/bin/screenshot screen"))
+hl.bind("ALT + Print",                 hl.dsp.exec_cmd("/home/suresh/.local/bin/screenshot window"))
+hl.bind("SHIFT + Print",               hl.dsp.exec_cmd("/home/suresh/.local/bin/screenshot region --edit"))
 
 -- Theming and Wallpaper
 
