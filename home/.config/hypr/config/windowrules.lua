@@ -128,3 +128,6 @@ hl.layer_rule({
 
 -- Calendar popup from the bar's date: float just under it
 hl.window_rule({ match = { class = "^(gsimplecal)$" }, float = true, pin = true, move = { "100", "34" } })
+
+-- Screenshot annotation (Shift+Print): float, centred, large
+hl.window_rule({ match = { class = "^(com.gabm.satty)$" }, float = true, center = true, size = { "monitor_w*0.8", "monitor_h*0.8" } })

@@ -1,0 +1,9 @@
+[general]
+early-exit = true
+initial-tool = "arrow"
+copy-command = "wl-copy"
+annotation-size-factor = 1
+
+# Muted Gruvbox
+[color-palette]
+palette = ["#cc241d", "#d79921", "#98971a", "#458588", "#b16286", "#689d6a", "#d5c4a1"]

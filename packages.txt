@@ -90,6 +90,7 @@ hypridle
 hyprland
 hyprlock
 hyprpicker
+hyprsunset
 inetutils
 intel-media-driver
 intel-media-sdk
@@ -107,8 +108,6 @@ libgsf
 libopenraw
 libva-nvidia-driver
 libva-utils
-lightdm
-lightdm-gtk-greeter
 linux-cachyos
 linux-cachyos-headers
 linux-cachyos-lts
@@ -173,6 +172,7 @@ reflector
 ripgrep
 rsync
 s-nail
+satty
 sg3_utils
 shelly
 shelly-flatpak-backend
@@ -222,13 +222,13 @@ which
 wireplumber
 wl-clipboard
 wpa_supplicant
+wtype
 xdg-desktop-portal-hyprland
 xdg-user-dirs
 xdg-user-dirs-gtk
 xdg-utils
 xfconf
 xfsprogs
-xorg-server
 xorg-xhost
 xorg-xinit
 xorg-xrandr

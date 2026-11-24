@@ -7,7 +7,7 @@ H=$REPO/home
 mkdir -p "$H"
 
 # Whole config directories
-for d in hypr waybar dunst fuzzel kitty zathura mpv btop gtk-3.0 gtk-4.0 qt6ct gsimplecal; do
+for d in hypr waybar dunst fuzzel kitty zathura mpv btop gtk-3.0 gtk-4.0 qt6ct gsimplecal satty; do
   mkdir -p "$H/.config/$d"
   rsync -a --delete "$HOME/.config/$d/" "$H/.config/$d/"
 done
