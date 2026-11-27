@@ -21,9 +21,10 @@ machine dotfiles out, so they live here instead.
 | `home/.config/waybar/` | Bar: rectangular segments, power-profile indicator |
 | `home/.config/{dunst,fuzzel,kitty,zathura,mpv,btop}/` | Notifications, launcher, terminal, PDF, video (VA-API), monitor |
 | `home/.config/{gtk-3.0,gtk-4.0,qt6ct}/`, `mimeapps.list` | Toolkit settings, default apps |
+| `home/.config/{pipewire,wireplumber}/` | Audio: native 44.1/48/88.2/96 kHz, HDMI output kept awake, best Bluetooth codecs |
 | `home/.config/fish/config.fish` | Shell; Pure prompt options are set by `install.sh` |
 | `home/.config/systemd/user/` | Dropbox and numpi sshfs mounts |
-| `home/.local/bin/` | launcher, filesearch (Super+Shift+Space), emoji-picker (Super+.), osd (volume/brightness bubble), screenshot (Print variants), battery-alert (15%/7% warnings, run by a user timer), calendar-popup, powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
+| `home/.local/bin/` | launcher, filesearch (Super+Shift+Space), emoji-picker (Super+.), osd (volume/brightness bubble), screenshot (Print variants), battery-alert (15%/7% warnings, run by a user timer), bar-popup (bar panels: toggle, one at a time, Esc closes), powermenu, wifimenu, cliphist menu/watcher, polkit agent, power-profile sync |
 | `home/Pictures/Wallpapers/` | Dimmed Gruvbox wallpaper |
 | `system/etc/udev/rules.d/` | Performance profile on AC, balanced on battery |
 | `system/etc/greetd/`, `system/etc/pam.d/greetd` | Login: greetd auto-login straight into hyprlock (password on the Gruvbox lock screen; hyprlock also unlocks the keyring); tuigreet after a log-out |

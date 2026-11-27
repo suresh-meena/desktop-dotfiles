@@ -42,12 +42,12 @@
     "format": "  {:%a %e/%m}",
     "interval": 60,
     "tooltip": false,
-    "on-click": "/home/suresh/.local/bin/calendar-popup"
+    "on-click": "/home/suresh/.local/bin/bar-popup calendar"
   },
   "cpu": {
     "interval": 5,
     "format": "  {usage}%",
-    "on-click": "kitty -e btop",
+    "on-click": "/home/suresh/.local/bin/bar-popup system",
     "tooltip": false
   },
   "power-profiles-daemon": {
@@ -99,7 +99,7 @@
     "tooltip-format": "Bluetooth on, nothing connected",
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "blueman-manager",
+    "on-click": "/home/suresh/.local/bin/bar-popup bluetooth",
     "on-click-right": "rfkill toggle bluetooth"
   },
   "idle_inhibitor": {
@@ -141,7 +141,7 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "{ifname}",
     "on-click": "/home/suresh/.local/bin/wifimenu",
-    "on-click-right": "kitty -e nmtui"
+    "on-click-right": "/home/suresh/.local/bin/bar-popup network"
   },
   "wireplumber": {
     "format": "{icon}  {volume}%",
@@ -152,7 +152,7 @@
       "󰕾"
     ],
     "scroll-step": 5,
-    "on-click": "pavucontrol",
+    "on-click": "/home/suresh/.local/bin/bar-popup audio",
     "on-click-right": "/home/suresh/.local/bin/audio-output",
     "tooltip": false
   },

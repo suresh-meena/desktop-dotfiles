@@ -1,0 +1,25 @@
+#!/bin/sh
+# Open a panel from the bar, or close it if it is already open.
+# Only one panel is open at a time. Esc closes the focused panel
+# (see ~/.config/hypr/config/bar-popups.lua).
+#   bar-popup calendar|system|network|bluetooth|audio
+case "${1:-}" in
+calendar)  class=gsimplecal;                 cmd="gsimplecal" ;;
+system)    class=bar-popup-btop;             cmd="kitty --class bar-popup-btop -e btop" ;;
+network)   class=bar-popup-nmtui;            cmd="kitty --class bar-popup-nmtui -e nmtui" ;;
+bluetooth) class=blueman-manager;            cmd="blueman-manager" ;;
+audio)     class=org.pulseaudio.pavucontrol; cmd="pavucontrol" ;;
+*) echo "usage: bar-popup calendar|system|network|bluetooth|audio" >&2; exit 2 ;;
+esac
+ALL="gsimplecal bar-popup-btop bar-popup-nmtui blueman-manager org.pulseaudio.pavucontrol"
+
+close() {
+    re=$(printf '%s' "$1" | sed 's/\./\\\\./g')
+    hyprctl dispatch "hl.dsp.window.close({ window = \"class:^($re)\$\" })" >/dev/null
+}
+open=$(hyprctl clients -j | jq -r '.[].class')
+is_open() { printf '%s\n' "$open" | grep -qxF "$1"; }
+
+if is_open "$class"; then close "$class"; exit 0; fi
+for c in $ALL; do is_open "$c" && close "$c"; done
+exec setsid -f $cmd >/dev/null 2>&1
