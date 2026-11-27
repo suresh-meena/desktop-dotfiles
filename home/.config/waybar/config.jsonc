@@ -153,6 +153,7 @@
     ],
     "scroll-step": 5,
     "on-click": "pavucontrol",
+    "on-click-right": "/home/suresh/.local/bin/audio-output",
     "tooltip": false
   },
   "tray": {

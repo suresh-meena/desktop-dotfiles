@@ -143,6 +143,7 @@ opencl-nvidia-580xx
 openssh
 os-prober
 pacman-contrib
+pandoc-cli
 pavucontrol
 perl
 pipewire-alsa

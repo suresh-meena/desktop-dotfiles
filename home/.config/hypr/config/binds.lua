@@ -82,6 +82,7 @@ hl.bind("CONTROL + SHIFT + Escape", hl.dsp.exec_cmd(launchPrefix .. TERMINAL .. 
 hl.bind(mainMod .. " + Space",      hl.dsp.exec_cmd("/home/suresh/.local/bin/launcher"))
 hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.exec_cmd("/home/suresh/.local/bin/filesearch"))
 hl.bind(mainMod .. " + period",      hl.dsp.exec_cmd("/home/suresh/.local/bin/emoji-picker"))
+hl.bind(mainMod .. " + SHIFT + A",   hl.dsp.exec_cmd("/home/suresh/.local/bin/audio-output"))
 hl.bind(mainMod .. " + ALT + C",    hl.dsp.exec_cmd("/home/suresh/.local/bin/powermenu"))
 hl.bind(mainMod .. " + V",          hl.dsp.exec_cmd("/home/suresh/.local/bin/cliphist-menu"))
 hl.bind(mainMod .. " + L",          hl.dsp.exec_cmd("loginctl lock-session"))
